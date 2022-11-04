@@ -41,7 +41,7 @@
         <td>${subject.name}</td>
         <td>${subject.party.id}</td>
         <td>${subject.studyingtime}</td>
-        <td> <a href="${pageContext.request.contextPath}/ChangeSubject/${subject.id}">Изменить предмет</a></td>
+        <td> <a class="ssilka" href="${pageContext.request.contextPath}/ChangeSubject/${subject.id}">Изменить предмет</a></td>
     </c:forEach>
   </table>
   </div>

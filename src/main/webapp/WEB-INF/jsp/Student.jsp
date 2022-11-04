@@ -42,7 +42,7 @@
         <td>${student.party.id}</td>
         <td>${student.sticket}</td>
         <td>${student.borndata}</td>
-        <td> <a href="${pageContext.request.contextPath}/ChangeStudent/${student.id}">Изменить студента</a></td>
+        <td> <a class="ssilka" href="${pageContext.request.contextPath}/ChangeStudent/${student.id}">Изменить студента</a></td>
     </c:forEach>
   </table>
   </div>

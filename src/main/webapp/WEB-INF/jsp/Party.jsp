@@ -41,7 +41,7 @@
         <td>${party.id}</td>
         <td>${party.name}</td>
         <td>${party.course}</td>
-      <td> <a href="${pageContext.request.contextPath}/ChangeParty/${party.id}">Изменить группу</a></td>
+      <td> <a class="ssilka" href="${pageContext.request.contextPath}/ChangeParty/${party.id}">Изменить группу</a></td>
 
     </c:forEach>
   </table>

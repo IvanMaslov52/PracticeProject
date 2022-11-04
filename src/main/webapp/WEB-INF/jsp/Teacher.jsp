@@ -44,7 +44,7 @@
         <td>${teacher.borndate}</td>
         <td>${teacher.parseIntoString()}</td>
         <td>${teacher.speciality}</td>
-        <td> <a href="${pageContext.request.contextPath}/ChangeTeacher/${teacher.id}">Изменить учителя</a></td>
+        <td> <a class="ssilka" href="${pageContext.request.contextPath}/ChangeTeacher/${teacher.id}">Изменить учителя</a></td>
 
         </c:forEach>
 
