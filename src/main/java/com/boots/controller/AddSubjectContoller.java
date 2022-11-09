@@ -31,7 +31,6 @@ public class AddSubjectContoller {
     {
         if(bindingResult.hasErrors())
         {
-            System.out.println(bindingResult.hasErrors());
             return StringConstant.ADDSUBJECT;
         }
         subjectService.save(subject);
