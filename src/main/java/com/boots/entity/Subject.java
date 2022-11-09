@@ -1,6 +1,10 @@
 package com.boots.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Subject {
@@ -9,10 +13,15 @@ public class Subject {
     private Long id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_id")
+    @NotNull
     private Party party;
     @Column
+    @Size(min = 2,max = 50)
     private String name;
     @Column
+    @NotNull
+    @Min(10)
+    @Max(250)
     private Long studyingtime;
 
     public Subject(Party party, String name, Long studyingtime) {

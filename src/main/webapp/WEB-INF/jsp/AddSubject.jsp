@@ -27,12 +27,32 @@
                 </div>
             </div>
         </div>
-  <form action="${pageContext.request.contextPath}/AddSubject" method="post">
-              <input type="number" name="party" placeholder="введите номер группы"/>
-              <input type="text" name="name" placeholder="введите название предмета"/>
-              <input type="number"  name="studyingtime" placeholder="введите кол-во время обучения"/>
+
+
+
+  <div class = "size2">
+  <form:form action="${pageContext.request.contextPath}/AddSubject" method="post" modelAttribute="SubjectForm">
+
+<div>
+              <form:input type="number" name="party" path="party" placeholder="введите номер группы"/>
+               <form:errors path="party"></form:errors>
+</div>
+<div>
+              <form:input type="text" name="name" path="name" placeholder="введите название предмета"/>
+               <form:errors path="name"></form:errors>
+</div>
+<div>
+              <form:input type="number" path="studyingtime"  name="studyingtime" placeholder="введите кол-во время обучения"/>
+               <form:errors path="studyingtime"></form:errors>
+               </div>
+
               <button type="submit">Добавить</button>
-            </form>
+            </form:form>
+    </div>
+
+
+
+
 <div class=" size2">
 <a class="ssilka" href="${pageContext.request.contextPath}/Subject">Назад</a>
 </div>

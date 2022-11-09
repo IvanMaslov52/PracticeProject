@@ -27,13 +27,29 @@
                 </div>
             </div>
         </div>
-  <form action="${pageContext.request.contextPath}/ChangeTeacher/${Teacher.id}" method="post">
-              <input type="text" name="fio" value="${Teacher.fio}" placeholder="$Teacher.fio}"/>
-              <input type="text" name="borndate" value="${Teacher.borndate}" placeholder="${Teacher.borndate}"/>
-              <input type="text" name="subjects" value="${Teacher.parseIntoString()}" placeholder="${Teacher.parseIntoString()}"/>
-              <input type="text" name="speciality" value="${Teacher.speciality}" placeholder="${Teacher.speciality}"/>
+        <div class = "size2">
+  <form:form action="${pageContext.request.contextPath}/ChangeTeacher/${TeacherForm.id}" method="post" modelAttribute="TeacherForm">
+
+                <div>
+              <form:input type="text" name="fio" path="fio" value="${TeacherForm.fio}" placeholder="${TeacherForm.fio}"/>
+              <form:errors path="fio"></form:errors>
+              </div>
+                            <div>
+              <form:input type="text" name="borndate" path="borndate" value="${TeacherForm.borndate}" placeholder="${TeacherForm.borndate}"/>
+              <form:errors path="borndate"></form:errors>
+              </div>
+                            <div>
+              <form:input type="text" name="subjects" path="subjects" value="${TeacherForm.parseIntoString()}" placeholder="${TeacherForm.parseIntoString()}"/>
+              <form:errors path="subjects"></form:errors>
+              </div>
+                            <div>
+              <form:input type="text" name="speciality" path="speciality" value="${TeacherForm.speciality}" placeholder="${TeacherForm.speciality}"/>
+              <form:errors path="speciality"></form:errors>
+              </div>
+
               <button type="submit">Добавить</button>
-            </form>
+            </form:form>
+            </div>
 <div class=" size2">
 <a class="ssilka" href="${pageContext.request.contextPath}/Teacher">Назад</a>
 </div>

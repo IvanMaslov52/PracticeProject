@@ -26,11 +26,19 @@
                 </div>
             </div>
         </div>
-  <form action="${pageContext.request.contextPath}/AddParty" method="post">
-              <input type="text" name="name" placeholder="введите название группы" />
-              <input type="text" name="course" placeholder="введите курс"/>
+<div class = "size2">
+  <form:form action="${pageContext.request.contextPath}/AddParty" method="post" modelAttribute="PartyForm" >
+            <div>
+              <form:input type="text" path="name" name="name" placeholder="введите название группы" />
+                <form:errors path="name"></form:errors>
+                </div>
+                <div>
+              <form:input type="text" path="course" name="course" placeholder="введите курс"/>
+                <form:errors path="course"></form:errors>
+                </div>
               <button type="submit">Добавить</button>
-            </form>
+            </form:form>
+</div>
 <div class=" size2">
 <a class="ssilka" href="${pageContext.request.contextPath}/Party">Назад</a>
 </div>

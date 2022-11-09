@@ -1,6 +1,10 @@
 package com.boots.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Student {
@@ -9,12 +13,18 @@ public class Student {
     private Long id;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_id")
+    @NotNull
     private Party party;
     @Column
+    @Size(min = 3 , max = 100)
     private String fio;
     @Column
+    @Max(99999999)
+    @Min(0)
+    @NotNull
     private Long sticket;
     @Column
+    @Size(min = 6 , max = 20)
     private String borndata;
 
     public String getBorndata() {

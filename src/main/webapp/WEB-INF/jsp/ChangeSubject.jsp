@@ -27,12 +27,25 @@
                 </div>
             </div>
         </div>
-  <form action="${pageContext.request.contextPath}/ChangeSubject/${Subject.id}" method="post">
-              <input type="number" name="party" value="${Subject.party.id}" placeholder="${Subject.party.id}"/>
-              <input type="text" name="name" value="${Subject.name}" placeholder="${Subject.name}"/>
-              <input type="number" name="studyingtime" value="${Subject.studyingtime}" placeholder="${Subject.studyingtime}"/>
+     <div class = "size2">
+  <form:form action="${pageContext.request.contextPath}/ChangeSubject/${SubjectForm.id}" method="post"  modelAttribute="SubjectForm">
+
+                <div>
+              <form:input type="number" name="party" path="party" value="${SubjectForm.party.id}" placeholder="${SubjectForm.party.id}"/>
+              <form:errors path="party"></form:errors>
+              </div>
+                            <div>
+              <form:input type="text" name="name" path="name" value="${SubjectForm.name}" placeholder="${SubjectForm.name}"/>
+              <form:errors path="name"></form:errors>
+              </div>
+                            <div>
+              <form:input type="number" name="studyingtime" path ="studyingtime" value="${SubjectForm.studyingtime}" placeholder="${SubjectForm.studyingtime}"/>
+              <form:errors path="studyingtime"></form:errors>
+              </div>
+
               <button type="submit">Добавить</button>
-            </form>
+            </form:form>
+            </div>
 <div class=" size2">
 <a class="ssilka" href="${pageContext.request.contextPath}/Subject">Назад</a>
 </div>

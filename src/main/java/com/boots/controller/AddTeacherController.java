@@ -5,9 +5,13 @@ import com.boots.entity.Teacher;
 import com.boots.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.validation.Valid;
 
 @Controller
 public class AddTeacherController {
@@ -16,15 +20,20 @@ public class AddTeacherController {
     private TeacherService teacherService;
 
     @GetMapping(StringConstant.SLADDTEACHER)
-    public String teacher()
+    public String teacher(Model model)
     {
+        model.addAttribute("TeacherForm", new Teacher());
         return StringConstant.ADDTEACHER;
     }
     @PostMapping(StringConstant.SLADDTEACHER)
-    public String addTeacher(@RequestParam(name = "fio" ,required = false )String fio, @RequestParam(name = "borndate" ,required = false )String borndate, @RequestParam(name = "subjects" ,required = false )String subjects, @RequestParam(name = "speciality" ,required = false )String speciality)
-    {
+    public String addTeacher(@ModelAttribute("TeacherForm")@Valid Teacher teacher, BindingResult bindingResult){
 
-        teacherService.save(new Teacher(fio,borndate, teacherService.parsing(subjects),speciality));
+        if(bindingResult.hasErrors())
+        {
+            return StringConstant.ADDTEACHER;
+        }
+        teacherService.save(teacher);
+
         return StringConstant.REDTEACHER;
     }
 }

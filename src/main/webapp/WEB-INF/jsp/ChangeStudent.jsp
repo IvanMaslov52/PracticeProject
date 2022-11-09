@@ -27,13 +27,29 @@
                 </div>
             </div>
         </div>
-  <form action="${pageContext.request.contextPath}/ChangeStudent/${Student.id}" method="post">
-              <input type="number" name="party" value="${Student.party.id}" placeholder="${Student.party.id}"/>
-              <input type="text" name="fio" value="${Student.fio}" placeholder="${Student.fio}"/>
-              <input type="number" name="sticket" value="${Student.sticket}" placeholder="${Student.sticket}"/>
-              <input type="text" name="borndata" value="${Student.borndata}" placeholder="${Student.borndata}"/>
+        <div class = "size2">
+  <form:form action="${pageContext.request.contextPath}/ChangeStudent/${StudentForm.id}" method="post" modelAttribute="StudentForm">
+
+                <div>
+              <form:input type="number" name="party" path="party" value="${StudentForm.party.id}" placeholder="${StudentForm.party.id}"/>
+              <form:errors path="party"></form:errors>
+              </div>
+                            <div>
+              <form:input type="text" name="fio" path="fio" value="${StudentForm.fio}" placeholder="${StudentForm.fio}"/>
+              <form:errors path="fio"></form:errors>
+              </div>
+                            <div>
+              <form:input type="number" name="sticket" path="sticket" value="${StudentForm.sticket}" placeholder="${StudentForm.sticket}"/>
+              <form:errors path="sticket"></form:errors>
+              </div>
+                            <div>
+              <form:input type="text" name="borndata" path="borndata"  value="${StudentForm.borndata}" placeholder="${StudentForm.borndata}"/>
+               <form:errors path="borndata"></form:errors>
+               </div>
+
               <button type="submit">Добавить</button>
-            </form>
+            </form:form>
+            </div>
 <div class=" size2">
 <a class="ssilka" href="${pageContext.request.contextPath}/Student">Назад</a>
 </div>

@@ -1,6 +1,7 @@
 package com.boots.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Party {
@@ -8,8 +9,10 @@ public class Party {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
+    @Size(min = 3 , max = 100)
     private String name;
     @Column
+    @Size(min = 3, max = 100)
     private String course;
 
     public Party(String name, String course) {

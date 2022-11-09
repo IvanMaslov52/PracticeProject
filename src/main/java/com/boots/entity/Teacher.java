@@ -2,6 +2,9 @@ package com.boots.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,15 +14,19 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column
+    @Size(min=3,max = 100)
     private String fio;
     @Column
+    @Size(min=3,max = 100)
     private String borndate;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "teacher_subjects",
             joinColumns = { @JoinColumn(name = "teacher_id") },
             inverseJoinColumns = { @JoinColumn(name = "subjects_id") })
+    @NotEmpty
     private Set<Subject> subjects = new HashSet<Subject>();
     @Column
+    @Size(min=3,max = 100)
     private String speciality;
 
     public Teacher(String fio, String borndate, Set<Subject> subjects, String speciality) {
@@ -83,13 +90,17 @@ public class Teacher {
     }
     public String parseIntoString()
     {
+
         String str = new String();
         for(Subject subject : this.getSubjects())
         {
             str += subject.getId();
-            str+=" ";
+            str+=",";
         }
+        if(str.length() ==  0)
+        {return "";}
         str=str.substring(0,str.length()-1);
+
         return str;
     }
 }

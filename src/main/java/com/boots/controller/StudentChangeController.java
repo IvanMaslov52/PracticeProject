@@ -1,15 +1,16 @@
 package com.boots.controller;
 
 import com.boots.constant.StringConstant;
+import com.boots.entity.Student;
 import com.boots.service.PartyService;
 import com.boots.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class StudentChangeController {
@@ -20,13 +21,17 @@ public class StudentChangeController {
     @GetMapping(StringConstant.SLCHANGESTUDENT)
     public String getStudent(@PathVariable("id")Long id, Model model)
     {
-        model.addAttribute("Student",studentService.findStudentById(id));
+        model.addAttribute("StudentForm",studentService.findStudentById(id));
         return StringConstant.CHANGESTUDENT;
     }
     @PostMapping(StringConstant.SLCHANGESTUDENT)
-    public String changeStudent(@PathVariable("id")Long id, @RequestParam(name = "party" ,required = false )Long partyid, @RequestParam(name = "fio" ,required = false )String fio,@RequestParam(name = "sticket" ,required = false )Long sticket,@RequestParam(name = "borndata" ,required = false )String borndata)
+    public String changeStudent(@ModelAttribute("StudentForm")@Valid Student student, BindingResult bindingResult)
     {
-        studentService.update(id,partyid,fio,sticket,borndata);
+        if(bindingResult.hasErrors())
+        {
+            return StringConstant.CHANGESTUDENT;
+        }
+        studentService.save(student);
         return StringConstant.REDSTUDENT;
     }
 }

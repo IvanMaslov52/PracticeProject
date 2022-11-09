@@ -16,7 +16,7 @@
                 <div class="header-margin">
                     <div class="roboto">
                         <nav class="header-nav">
-                            <a class="ssilka" href="${pageContext.request.contextPath}/Party"> Групы</a>
+                            <a class="ssilka" href="${pageContext.request.contextPath}/Party"> Группы</a>
                             <a class="ssilka" href="${pageContext.request.contextPath}/Student" >Студенты</a>
                             <a class="ssilka" href="${pageContext.request.contextPath}/Subject" >Предметы</a>
                             <a class="ssilka" href="${pageContext.request.contextPath}/Teacher" >Учителя</a>

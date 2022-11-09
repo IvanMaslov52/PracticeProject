@@ -27,13 +27,32 @@
                 </div>
             </div>
         </div>
-  <form action="${pageContext.request.contextPath}/AddTeacher" method="post">
-              <input type="text"  name="fio" placeholder="введите ФИО учителя"/>
-                  <input type="text"  name="borndate" placeholder="введите даты"/>
-                  <input type="text"  name="subjects" placeholder="введите номера предметов через нижнее подчеркивание"/>
-                  <input type="text"  name="speciality" placeholder="введите специальность"/>
+
+     <div class = "size2">
+  <form:form action="${pageContext.request.contextPath}/AddTeacher" method="post" modelAttribute="TeacherForm">
+
+  <div>
+              <form:input type="text"  name="fio"  path="fio" placeholder="введите ФИО учителя"/>
+              <form:errors path="fio"></form:errors>
+              </div>
+              <div>
+                  <form:input type="text"  name="borndate" path="borndate" placeholder="введите даты"/>
+            <form:errors path="borndate"></form:errors>
+            </div>
+            <div>
+                  <form:input type="text"  name="subjects" path="subjects" placeholder="введите номера предметов через запятую"/>
+                    <form:errors path="subjects"></form:errors>
+            </div>
+            <div>
+                  <form:input type="text"  name="speciality" path="speciality" placeholder="введите специальность"/>
+                  <form:errors path="speciality"></form:errors>
+</div>
+
               <button type="submit">Добавить</button>
-            </form>
+            </form:form>
+     </div>
+
+
 <div class=" size2">
 <a class="ssilka" href="${pageContext.request.contextPath}/Teacher">Назад</a>
 </div>

@@ -27,11 +27,24 @@
                 </div>
             </div>
         </div>
-  <form action="${pageContext.request.contextPath}/ChangeParty/${Party.id}" method="post">
-              <input type="text" name="name" value="${Party.name}" placeholder="${Party.name}"/>
-              <input type="text" name="course" value="${Party.course}" placeholder="${Party.course}"/>
+
+
+
+<div class = "size2">
+  <form:form action="${pageContext.request.contextPath}/ChangeParty/${PartyForm.id}" method="post" modelAttribute="PartyForm">
+
+              <div>
+              <form:input type="text" name="name" path="name" value="${PartyForm.name}" placeholder="${PartyForm.name}"/>
+                <form:errors path="name"></form:errors>
+                </div>
+              <div>
+              <form:input type="text" name="course" path="course" value="${PartyForm.course}" placeholder="${PartyForm.course}"/>
+                    <form:errors path="course"></form:errors>
+                    </div>
               <button type="submit">Добавить</button>
-            </form>
+            </form:form>
+</div>
+
 <div class=" size2">
 <a class="ssilka" href="${pageContext.request.contextPath}/Party">Назад</a>
 </div>
