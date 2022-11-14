@@ -1,5 +1,7 @@
 package com.boots.constant;
 
+import javax.xml.soap.SAAJMetaFactory;
+
 public class StringConstant {
     public static final String STUDENT = "Student";
     public static final String SLSTUDENT = "/Student";
@@ -37,4 +39,16 @@ public class StringConstant {
     public static final String CHANGETEACHER = "ChangeTeacher";
     public static final String SLCHANGETEACHER = "/ChangeTeacher/{id}";
     public static final String REDCHANGETEACHER = "redirect:/ChangeTeacher/{id}";
+    public static final String MAIN = "Main";
+    public static final String SLDELETEPARTY = "/DeleteParty/{id}";
+    public static final String SLDELETESTUDENT = "/DeleteStudent/{id}";
+    public static final String SLDELETESUBJECT = "/DeleteSubject/{id}";
+    public static final String SLDELETETEACHER = "/DeleteTeacher/{id}";
+    public static final String DELETEPARTY = "DeleteParty/{id}";
+    public static final String DELETESTUDENT = "DeleteStudent/{id}";
+    public static final String DELETESUBJECT = "DeleteSubject/{id}";
+    public static final String DELETETEACHER = "DeleteTeacher/{id}";
+
+
+
 }

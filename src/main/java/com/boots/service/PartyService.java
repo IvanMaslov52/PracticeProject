@@ -32,5 +32,9 @@ public class PartyService {
         party.setCourse(course);
         partyRepo.save(party);
     }
+    public void delete(Long id)
+    {
+        partyRepo.delete(findPartyById(id));
+    }
 
 }

@@ -1,10 +1,14 @@
 package com.boots.entity;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 public class Student {
@@ -14,17 +18,16 @@ public class Student {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_id")
     @NotNull
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Party party;
     @Column
     @Size(min = 3 , max = 100)
     private String fio;
-    @Column
+    @Column(unique = true, nullable = false)
     @Max(99999999)
     @Min(0)
-    @NotNull
     private Long sticket;
-    @Column
-    @Size(min = 6 , max = 20)
+    @NotNull
     private String borndata;
 
     public String getBorndata() {

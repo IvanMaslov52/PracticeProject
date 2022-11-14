@@ -40,6 +40,19 @@ public class StudentService {
         student.setBorndata(borndata);
         studentRepo.save(student);
     }
+    public List<Party> listWithoutParty(List<Party> list, String party)
+    {
+        for(int i =0;i <list.size();i++)
+        {
+            if(list.get(i).getName().equals(party))
+                list.remove(i);
+        }
+        return list;
+    }
+    public void delete(Long id)
+    {
+        studentRepo.delete(findStudentById(id));
+    }
 
 
 }

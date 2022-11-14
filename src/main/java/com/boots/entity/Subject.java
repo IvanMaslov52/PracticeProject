@@ -1,21 +1,28 @@
 package com.boots.entity;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_id")
     @NotNull
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Party party;
-    @Column
+    @Column(unique = true, nullable = false)
     @Size(min = 2,max = 50)
     private String name;
     @Column
@@ -23,6 +30,22 @@ public class Subject {
     @Min(10)
     @Max(250)
     private Long studyingtime;
+
+
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.REMOVE})
+    @JoinTable(name = "teacher_subjects",
+            joinColumns = { @JoinColumn(name = "subjects_id") },
+            inverseJoinColumns = { @JoinColumn(name = "teacher_id") })
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<Teacher> teachers = new HashSet<>();
+
+    public Set<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(Set<Teacher> teachers) {
+        this.teachers = teachers;
+    }
 
     public Subject(Party party, String name, Long studyingtime) {
         this.party = party;

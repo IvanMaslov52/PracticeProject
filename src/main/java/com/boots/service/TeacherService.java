@@ -64,6 +64,22 @@ public class TeacherService {
         teacher.setSpeciality(speciality);
         teacherRepo.save(teacher);
     }
+    public List<Subject> listWithoutSubject(Set<Subject> set,List<Subject> list)
+    {
+        for(Subject subject : set)
+        {
+            for(int i = 0;i < list.size();i++)
+            {
+                if(list.get(i).getName().equals(subject.getName()))
+                    list.remove(i);
+            }
+        }
+        return list;
+    }
+    public void delete(Long id)
+    {
+        teacherRepo.delete(findTeacherById(id));
+    }
 
 
 }

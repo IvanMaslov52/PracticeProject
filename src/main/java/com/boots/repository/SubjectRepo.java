@@ -8,5 +8,6 @@ public interface SubjectRepo extends CrudRepository<Subject,Long> {
     List<Subject> findAll();
 
     Subject findSubjectsById(Long id);
+    Subject findSubjectByName(String Name);
 
 }

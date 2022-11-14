@@ -11,6 +11,7 @@ public interface StudentRepo extends JpaRepository<Student,Long> {
     List<Student> findAll();
     List<Student> findAllByParty(Party party);
     Student findStudentById(Long id);
+    Student findStudentBySticket(String sticket);
 
 
 

@@ -1,6 +1,7 @@
 package com.boots.service;
 
 
+import com.boots.entity.Party;
 import com.boots.entity.Subject;
 import com.boots.repository.PartyRepo;
 import com.boots.repository.SubjectRepo;
@@ -32,6 +33,19 @@ public class SubjectService {
         subject.setName(name);
         subject.setStudyingtime(studyingtime);
         subjectRepo.save(subject);
+    }
+    public List<Party> listWithoutParty(List<Party> list, String party)
+    {
+        for(int i =0;i <list.size();i++)
+        {
+            if(list.get(i).getName().equals(party))
+                list.remove(i);
+        }
+        return list;
+    }
+    public void delete(Long id)
+    {
+        subjectRepo.delete(findSubjectsById(id));
     }
 
 

@@ -8,7 +8,7 @@ public class Party {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
+    @Column(unique = true, nullable = false)
     @Size(min = 3 , max = 100)
     private String name;
     @Column

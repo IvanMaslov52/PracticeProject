@@ -7,40 +7,40 @@
 <head>
   <meta charset="utf-8">
   <title>AddTeacher</title>
-
-<link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>
 </head>
 
 <body>
 <div class="size1">
-<div class="nav_color">
-            <div class="size2">
-                <div class="header-margin">
-                    <div class="roboto">
-                        <nav class="header-nav">
-                            <a class="ssilka" href="${pageContext.request.contextPath}/Party"> Группы</a>
-                            <a class="ssilka" href="${pageContext.request.contextPath}/Student" >Студенты</a>
-                            <a class="ssilka" href="${pageContext.request.contextPath}/Subject" >Предметы</a>
-                            <a class="ssilka" href="${pageContext.request.contextPath}/Teacher" >Учителя</a>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
+<jsp:include page="header.jsp"/>
 
      <div class = "size2">
-  <form:form action="${pageContext.request.contextPath}/AddTeacher" method="post" modelAttribute="TeacherForm">
+     <form:form action=" ${pageContext.request.contextPath}/AddTeacher " method="post" modelAttribute="TeacherForm">
 
   <div>
               <form:input type="text"  name="fio"  path="fio" placeholder="введите ФИО учителя"/>
               <form:errors path="fio"></form:errors>
               </div>
               <div>
-                  <form:input type="text"  name="borndate" path="borndate" placeholder="введите даты"/>
-            <form:errors path="borndate"></form:errors>
+
+                  <form:input id="datepicker" type="text" path = "borndate" name="borndate" readonly="true"/>
+                  <form:errors path="borndate"></form:errors>
             </div>
             <div>
-                  <form:input type="text"  name="subjects" path="subjects" placeholder="введите номера предметов через запятую"/>
+                <form:select path="subjects" name="subjects" multiple="multiple">
+                    <c:forEach items="${SubjectList}" var="subjects">
+                        <option value="${subjects.id}">${subjects.name}</option>
+                    </c:forEach>
+                </form:select>
                     <form:errors path="subjects"></form:errors>
             </div>
             <div>
@@ -54,12 +54,9 @@
 
 
 <div class=" size2">
-<a class="ssilka" href="${pageContext.request.contextPath}/Teacher">Назад</a>
+<a class="ssilka" href="<c:url value="/Teacher"/>">Назад</a>
 </div>
-<footer>
-        <a href="https://github.com/Papagoth"><img alt="logo_1" src="/resources/image/image_1.png"></a>
-        <span>CREATED IN 2022</span>
-    </footer>
+<jsp:include page="footer.jsp"/>
 </div>
 </body>
 </html>

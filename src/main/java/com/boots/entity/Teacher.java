@@ -1,10 +1,14 @@
 package com.boots.entity;
 
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,14 +20,13 @@ public class Teacher {
     @Column
     @Size(min=3,max = 100)
     private String fio;
-    @Column
-    @Size(min=3,max = 100)
+    @NotNull
     private String borndate;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.REMOVE})
     @JoinTable(name = "teacher_subjects",
             joinColumns = { @JoinColumn(name = "teacher_id") },
             inverseJoinColumns = { @JoinColumn(name = "subjects_id") })
-    @NotEmpty
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Subject> subjects = new HashSet<Subject>();
     @Column
     @Size(min=3,max = 100)
@@ -94,7 +97,7 @@ public class Teacher {
         String str = new String();
         for(Subject subject : this.getSubjects())
         {
-            str += subject.getId();
+            str += subject.getName();
             str+=",";
         }
         if(str.length() ==  0)
