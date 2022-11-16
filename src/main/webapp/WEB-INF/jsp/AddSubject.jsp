@@ -7,8 +7,45 @@
 <head>
   <meta charset="utf-8">
   <title>AddSubject</title>
-
     <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.js"></script>
+    <script>
+        $.validator.addMethod('symbols', function(value, element) {
+            return value.match(new RegExp("^" + "[А-Яа-яЁё ]" + "+$"));
+        }, "Здесь должны быть только русские символы");
+        $(function () {
+            $("#SubjectForm").validate
+            ({
+                rules: {
+                    name: {
+                        required:true,
+                        symbols:true,
+                        minlength:2
+
+                    },
+                    studyingtime: {
+                        required:true,
+                        number:true,
+                        min:10,
+                        max:250
+                    }
+                },
+                messages: {
+                    name: {
+                        required:'Это поле не должно быть пустым',
+                        minlength: 'Название предмета должно содержать больше 2 символов'
+                    },
+                    studyingtime: {
+                        required:'Это поле не должно быть пустым',
+                        number: 'Здесь не может быть символов',
+                        min: 'Минимальное число 10 для времени обчуения',
+                        max: 'Максимальное число 250 для времени обчуения'
+                    }
+                }
+            });
+        })
+    </script>
 </head>
 
 <body>
@@ -18,7 +55,7 @@
 
 
   <div class = "size2">
-  <form:form action="${pageContext.request.contextPath}/AddSubject" method="post" modelAttribute="SubjectForm">
+  <form:form action="${pageContext.request.contextPath}/AddSubject" method="post" modelAttribute="SubjectForm"  id="SubjectForm">
 
 <div>
     <form:select path="party" name="party">

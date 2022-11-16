@@ -13,10 +13,44 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.js"></script>
     <script>
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>
+    <script>
+
+        $.validator.addMethod('symbols', function(value, element) {
+            return value.match(new RegExp("^" + "[А-Яа-яЁё ]" + "+$"));
+        }, "Здесь должны быть только русские символы");
         $(function () {
-            $("#datepicker").datepicker();
-        });
+            $("#TeacherForm").validate
+            ({
+                rules: {
+                    fio: {
+                        required:true,
+                        symbols:true,
+                        minlength:4
+                    },
+                    speciality: {
+                        required:true,
+                        symbols:true,
+                        minlength:3
+                    }
+                },
+                messages: {
+                    speciality: {
+                        required:'Это поле не должно быть пустым',
+                        minlength: 'Здесь не может быть меньше 4 символов'
+                    },
+                    fio: {
+                        required:'Это поле не должно быть пустым',
+                        minlength: 'Здесь не может быть меньше 3 символов'
+                    }
+                }
+            });
+        })
     </script>
 </head>
 
@@ -25,7 +59,7 @@
     <jsp:include page="header.jsp"/>
     <div class="size2">
         <form:form action="${pageContext.request.contextPath}/ChangeTeacher/${TeacherForm.id}" method="post"
-                   modelAttribute="TeacherForm">
+                   modelAttribute="TeacherForm" id="TeacherForm">
 
             <div>
                 <form:input type="text" name="fio" path="fio" value="${TeacherForm.fio}"

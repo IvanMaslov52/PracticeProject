@@ -27,7 +27,6 @@
                 </thead>
                 <c:forEach items="${Teacher}" var="teacher">
                 <tr>
-
                     <td>${teacher.fio}</td>
                     <td>${teacher.borndate}</td>
                     <td>${teacher.parseIntoString()}</td>

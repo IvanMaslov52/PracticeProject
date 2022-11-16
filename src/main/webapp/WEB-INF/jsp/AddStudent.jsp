@@ -12,18 +12,56 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.js"></script>
     <script>
-        $( function() {
+        $(function() {
             $( "#datepicker" ).datepicker();
         } );
+        </script>
+    <script>
+        $.validator.addMethod('symbols', function(value, element) {
+            return value.match(new RegExp("^" + "[А-Яа-яЁё ]" + "+$"));
+        }, "Здесь должны быть только русские символы");
+
+        $(function () {
+            $("#StudentForm").validate
+            ({
+                rules: {
+                    fio: {
+                        required:true,
+                        symbols:true,
+                        minlength:4
+                    },
+                    sticket: {
+                        required:true,
+                        number:true,
+                        min:10000000,
+                        max:99999999
+                    }
+                },
+                messages: {
+                    sticket: {
+                        required:'Это поле не должно быть пустым',
+                        min: 'Минимальное число 10000000 для билета',
+                        max: 'Максимальное число 99999999 для билета'
+                    },
+                    fio: {
+                        required:'Это поле не должно быть пустым',
+                        number:'Здесь не может быть символов',
+                        minlength: 'Здесь не может быть меньше 4 символов'
+                    }
+                }
+            });
+        })
     </script>
+
 </head>
 
 <body>
 <div class="size1">
 <jsp:include page="header.jsp"/>
         <div class = "size2">
-  <form:form action="${pageContext.request.contextPath}/AddStudent" method="post" modelAttribute="StudentForm">
+  <form:form action="${pageContext.request.contextPath}/AddStudent" method="post" modelAttribute="StudentForm" id="StudentForm">
 <div>
               <form:select path="party" name="party">
                   <option value="">Выберите группу</option>
@@ -56,5 +94,6 @@
 </div>
 <jsp:include page="footer.jsp"/>
 </div>
+
 </body>
 </html>

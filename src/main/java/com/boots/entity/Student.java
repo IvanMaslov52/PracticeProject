@@ -25,7 +25,7 @@ public class Student {
     private String fio;
     @Column(unique = true, nullable = false)
     @Max(99999999)
-    @Min(0)
+    @Min(10000000)
     private Long sticket;
     @NotNull
     private String borndata;
